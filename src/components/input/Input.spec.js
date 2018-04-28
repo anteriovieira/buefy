@@ -94,7 +94,7 @@ describe('BInput', () => {
         expect(wrapper.find('input').attributes().type).toBe('password')
 
         wrapper.find('.icon.is-clickable').trigger('click')
-        wrapper.vm.$nextTick().then(() => {})
+        wrapper.setData({ passwordReveal: false })
         expect(wrapper.find('input').attributes().type).toBe('text')
     })
 
