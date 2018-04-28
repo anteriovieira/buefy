@@ -91,7 +91,7 @@ describe('BInput', () => {
         expect(wrapper.find('input').attributes().type).toBe('password')
 
         wrapper.find('.icon.is-clickable').trigger('click')
-        wrapper.vm.$nextTick()
+        wrapper.vm.$forceUpdate()
         expect(wrapper.find('input').attributes().type).toBe('text')
     })
 
@@ -119,5 +119,21 @@ describe('BInput', () => {
         })
 
         expect(wrapper.classes()).toContain('is-loading')
+    })
+
+    it('keep its value on blur', async () => {
+        const wrapper = mount(BInput, {
+            propsData: {
+                value: 'foo'
+            }
+        })
+
+        const input = wrapper.find('input')
+
+        input.element.value = 'bar'
+        input.trigger('input')
+        input.trigger('blur')
+
+        expect(input.element.value).toBe('bar')
     })
 })
