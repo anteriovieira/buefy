@@ -91,6 +91,7 @@ describe('BInput', () => {
         expect(wrapper.find('input').attributes().type).toBe('password')
 
         wrapper.find('.icon.is-clickable').trigger('click')
+        wrapper.vm.$nextTick()
         expect(wrapper.find('input').attributes().type).toBe('text')
     })
 
