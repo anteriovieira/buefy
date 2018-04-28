@@ -92,4 +92,12 @@ describe('BInput', () => {
 
         expect(wrapper.classes()).toContain('is-expanded')
     })
+
+    it('display loading icon when loading property passed', () => {
+        const wrapper = shallow(BInput, {
+            propsData: { loading: true, icon: 'magnify' }
+        })
+
+        expect(wrapper.classes()).toContain('is-loading')
+    })
 })
