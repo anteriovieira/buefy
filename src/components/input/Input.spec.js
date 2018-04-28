@@ -81,6 +81,9 @@ describe('BInput', () => {
                 value: 'foo',
                 type: 'password',
                 passwordReveal: true
+            },
+            computed: {
+                statusType: () => 'is-success'
             }
         })
 
