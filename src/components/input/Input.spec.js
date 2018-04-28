@@ -78,10 +78,13 @@ describe('BInput', () => {
     it('toggles the visibility of the password to true when the togglePasswordVisibility method is called', () => {
         const wrapper = mount(BInput, {
             propsData: {
+                value: 'foo',
                 type: 'password',
                 passwordReveal: true
             }
         })
+
+        wrapper.setData({ value: 'bar' })
 
         expect(wrapper.find('input').exists()).toBeTruthy()
         expect(wrapper.find('.icon').exists()).toBeTruthy()
