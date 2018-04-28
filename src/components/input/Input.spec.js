@@ -125,6 +125,9 @@ describe('BInput', () => {
         const wrapper = mount(BInput, {
             propsData: {
                 value: 'foo'
+            },
+            methods: {
+                checkHtml5Validity: () => true
             }
         })
 
