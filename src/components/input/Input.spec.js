@@ -89,4 +89,12 @@ describe('BInput', () => {
 
         expect(wrapper.classes()).toContain('is-expanded')
     })
+
+    it('render icon on the right when the hasIconRight property is passed', () => {
+        const wrapper = shallow(BInput, {
+            propsData: { hasIconRight: true }
+        })
+
+        expect(wrapper.classes()).toContain('has-icons-right')
+    })
 })
