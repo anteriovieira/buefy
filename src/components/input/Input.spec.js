@@ -82,5 +82,11 @@ describe('BInput', () => {
         expect(target.element.getAttribute('readonly')).toBe('readonly')
     })
 
-    it()
+    it('expands input when expanded property is passed', () => {
+        const wrapper = shallow(BInput, {
+            propsData: { expanded: true }
+        })
+
+        expect(wrapper.classes()).toContain('is-expanded')
+    })
 })
