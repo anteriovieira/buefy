@@ -1,6 +1,6 @@
-import { shallow } from '@vue/test-utils'
+import { shallow, mount } from '@vue/test-utils'
 import BInput from '@components/input'
-import Icon from '@components/icon'
+import BIcon from '@components/icon'
 
 describe('BInput', () => {
     it('render correctly', () => {
@@ -37,7 +37,7 @@ describe('BInput', () => {
         const wrapper = shallow(BInput, {
             propsData: { icon: 'magnify' }
         })
-        const target = wrapper.find(Icon)
+        const target = wrapper.find(BIcon)
 
         expect(target.exists()).toBeTruthy()
     })
@@ -73,6 +73,22 @@ describe('BInput', () => {
         const target = wrapper.find('input')
         expect(target.exists()).toBeTruthy()
         expect(target.attributes().type).toBe('password')
+    })
+
+    it('toggles the visibility of the password to true when the togglePasswordVisibility method is called', () => {
+        const wrapper = mount(BInput, {
+            propsData: {
+                type: 'password',
+                passwordReveal: true
+            }
+        })
+
+        expect(wrapper.find('input').exists()).toBeTruthy()
+        expect(wrapper.find('.icon').exists()).toBeTruthy()
+        expect(wrapper.find('input').attributes().type).toBe('password')
+
+        wrapper.find('.icon.is-clickable').trigger('click')
+        expect(wrapper.find('input').attributes().type).toBe('text')
     })
 
     it('render the placeholder and readonly attribute when passed', () => {
