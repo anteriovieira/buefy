@@ -81,19 +81,17 @@ describe('BInput', () => {
                 value: 'foo',
                 type: 'password',
                 passwordReveal: true
-            },
-            computed: {
-                statusType: () => 'is-success'
             }
         })
 
         wrapper.setData({ value: 'bar' })
 
         expect(wrapper.find('input').exists()).toBeTruthy()
-        expect(wrapper.find('.icon').exists()).toBeTruthy()
         expect(wrapper.find('input').attributes().type).toBe('password')
 
-        wrapper.find('.icon.is-clickable').trigger('click')
+        const visibilityIcon = wrapper.find('.icon.is-clickable')
+        expect(visibilityIcon.exists()).toBeTruthy()
+        visibilityIcon.trigger('click')
         wrapper.setData({ passwordReveal: false })
         expect(wrapper.find('input').attributes().type).toBe('text')
 
