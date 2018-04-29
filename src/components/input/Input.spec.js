@@ -143,7 +143,7 @@ describe('BInput', () => {
         expect(input.element.value).toBe('bar')
     })
 
-    it('Status', () => {
+    it('change status icon when statusType updated', () => {
         const parent = {
             data: () => ({
                 newType: 'is-success',
