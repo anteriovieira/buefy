@@ -75,7 +75,7 @@ describe('BInput', () => {
         expect(target.attributes().type).toBe('password')
     })
 
-    it('toggles the visibility of the password to true when the togglePasswordVisibility method is called', () => {
+    it('toggles the visibility of the password to true when the togglePasswordVisibility method is called', (done) => {
         const wrapper = mount(BInput, {
             propsData: {
                 value: 'foo',
@@ -96,6 +96,8 @@ describe('BInput', () => {
         wrapper.find('.icon.is-clickable').trigger('click')
         wrapper.setData({ passwordReveal: false })
         expect(wrapper.find('input').attributes().type).toBe('text')
+
+        wrapper.vm.$nextTick(done)
     })
 
     it('render the placeholder and readonly attribute when passed', () => {
@@ -141,5 +143,26 @@ describe('BInput', () => {
         input.trigger('blur')
 
         expect(input.element.value).toBe('bar')
+    })
+
+    it('Status', () => {
+        const parent = {
+            data: () => ({
+                newType: 'is-success',
+                _isField: true
+            }),
+            components: {BInput},
+            template: `<b-input />`
+        }
+        const wrapper = mount(parent)
+
+        const input = wrapper.find(BInput)
+        expect(input.vm.statusTypeIcon).toBe('check')
+        wrapper.setData({ newType: 'is-danger' })
+        expect(input.vm.statusTypeIcon).toBe('alert-circle')
+        wrapper.setData({ newType: 'is-info' })
+        expect(input.vm.statusTypeIcon).toBe('information')
+        wrapper.setData({ newType: 'is-warning' })
+        expect(input.vm.statusTypeIcon).toBe('alert')
     })
 })
