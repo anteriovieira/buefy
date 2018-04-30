@@ -103,10 +103,23 @@ describe('BIcon', () => {
     it('overrides icon font size when customSize property is passed', () => {
         const wrapper = shallow(BIcon, {
             propsData: {
+                icon: 'eye',
+                pack: 'fa',
                 customSize: 'fa-2x'
             }
         })
 
-        expect(wrapper.find('i').classes()).toContain('fa-2x')
+        expect(wrapper.find('i').classes()).toContainEqual('fa', 'fa-2x')
+    })
+
+    it('render custom classes when customClass property is passed', () => {
+        const wrapper = shallow(BIcon, {
+            propsData: {
+                icon: 'eye',
+                customClass: 'foo-bar'
+            }
+        })
+
+        expect(wrapper.find('i').classes()).toContain('foo-bar')
     })
 })
