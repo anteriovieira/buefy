@@ -1,5 +1,5 @@
-import { Dialog, LoadingProgrammatic, ModalProgrammatic, Snackbar, Toast, BuefyConfig } from "../index";
-import Buefy from "../index";
+import { Dialog, LoadingProgrammatic, ModalProgrammatic, Snackbar, Toast } from "../";
+import Buefy from "../";
 import Vue from "vue";
 
 Vue.use(Buefy);
